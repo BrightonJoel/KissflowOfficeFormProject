@@ -8,7 +8,7 @@ export const HeaderMain = styled.div`
       margin:  10px 40px;
       padding: 20px 50px;
       text-decoration: None;
-      color: ${Colors.lightest};
+      color: ${Colors.light};
       border-radius : 12px;
       
   }
@@ -16,7 +16,7 @@ export const HeaderMain = styled.div`
     font-size: 30px;
   }
   a:hover{
-    color: ${Colors.light};
+    color: ${Colors.lightest};
     background-color: ${Colors.dark}
   }
   `

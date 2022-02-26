@@ -8,7 +8,7 @@ export const FooterMain = styled.div`
     width: 100%;
     h1{
         color: ${Colors.lightest};
-        font-size: 25px;
+        font-size: 20px;
         padding: 20px 0;
     }
   `

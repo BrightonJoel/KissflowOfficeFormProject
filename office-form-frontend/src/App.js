@@ -6,7 +6,8 @@ import Api from "./pages/api";
 import About from "./pages/about";
 import Dashboard from "./pages/dashboard"
 import Header from "./topAndBottomComponent/header";
-import Footer from "./topAndBottomComponent/footer"
+import Footer from "./topAndBottomComponent/footer";
+import LeaveFrom from "./forms/leaveForm";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
               <Header name="Dashboard" />
               <Dashboard />
               <Footer name="Dashbord" />
+              
 
             </React.Fragment>}
         />
@@ -42,6 +44,16 @@ export default function App() {
             <Footer name="Dashbord" />
 
           </React.Fragment>}
+        />
+        <Route path="/leaveForm" element={
+          <React.Fragment>
+
+            <Header/>
+            <LeaveFrom/>
+            <Footer/>
+
+          </React.Fragment>
+        }
         />
 
       </Routes>
