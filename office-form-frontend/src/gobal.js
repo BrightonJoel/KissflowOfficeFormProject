@@ -1,6 +1,6 @@
 export const Colors ={
-    lightest: "#fff",
-    light: "#eee",
-    dark : "#333",
-    darkest : "#000" 
+    lightest: "#EEEEEE",
+    light: "#00ADB5",
+    dark : "#393E46",
+    darkest : "#222831" 
 } 
