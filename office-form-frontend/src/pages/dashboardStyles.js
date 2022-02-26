@@ -32,6 +32,7 @@ export const DashboardForm = styled.div`
         background-color: ${Colors.light};
         outline : None;
         border-color: ${Colors.light};
+        color:${Colors.darkest}
     }
 
     `
