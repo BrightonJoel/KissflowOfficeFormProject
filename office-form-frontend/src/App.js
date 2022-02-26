@@ -1,30 +1,24 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
+import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 
-function App() {
+//pages
+import Api from "./pages/api";
 
 
-  const [data, setData] = useState();
-
-  useEffect(() => 
-    fetch("/members").then(
-      res => {
-        return res.json()
-      }
-    ).then(
-      data => {
-        // some stuff
-        setData(data)
-        console.log(data)
-      }
-    ).catch(err => {
-      // some error handling
-      console.log("data traction failed!!")
-    })
-  ,[])
+export default function App() {
   return (
-    <p>nothing to show :|</p>
+    <Router>
+      <Routes>
 
+        <Route exact path="/" element={<h1>create the dasboard</h1>}/>
+
+        <Route path="/api" element = {<Api/>}/>
+
+        
+        
+
+      </Routes>
+    </Router>
   );
 }
 
-export default App;
