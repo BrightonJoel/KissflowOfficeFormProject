@@ -7,16 +7,16 @@ export default function LeaveFrom() {
         <LeaveFormMain>
             <h1>Leave Request form</h1>
             <form>
-                <label htmlFor="EmpId">Employee ID : </label>
-                <input htmlFor="EmpId" type="text" autoFocus/>
-                <label htmlFor="EmpEmail">Company Email ID : </label>
-                <input htmlFor="EmpEmail" type="email" />
-                <label htmlFor="fromdate">From date : </label>
-                <input htmlFor="fromdate" type="date"></input>
-                <label htmlFor="todate">To date : </label>
-                <input htmlFor="todate" type="date" />
-                <label htmlFor="reason">Reason htmlFor Leave : </label>
-                <textarea rows="5" htmlFor="reason" minLength="10"></textarea>
+                <label htmlFor="EmpId">Employee ID* : </label>
+                <input htmlFor="EmpId" type="text" autoFocus required/>
+                <label htmlFor="EmpEmail" >Company Email ID* : </label>
+                <input htmlFor="EmpEmail" type="email" required/>
+                <label htmlFor="fromdate">From date* : </label>
+                <input htmlFor="fromdate" type="date" required></input>
+                <label htmlFor="todate">To date* : </label>
+                <input htmlFor="todate" type="date" required/>
+                <label htmlFor="reason">Reason for leave* : </label>
+                <textarea rows="5" htmlFor="reason" minLength="10" required></textarea>
                 {statusMessage ? (
                 <p>{statusMessage}</p>
                 ):(console.log("Message is null"))}
