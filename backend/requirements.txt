@@ -1,0 +1,6 @@
+flask==2.1.2
+pyjwt==2.4.0
+datetime
+Flask-PyMongo==2.3.0
+flask_jwt_extended==3.1.2
+python>=3.9.0
