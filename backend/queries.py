@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 from enum import Enum, auto, unique
 import datetime
+
 import json
 
 
@@ -14,21 +15,21 @@ employee = db["employee"]
 
 """
 Validation for Employee
-
 {
   $jsonSchema: {
     required: [
       'empName',
-      'empPassword'
+      'empPassword',
+      'empPosition'
     ],
     properties: {
       empName: {
         bsonType: 'string',
-        description: 'The Name must be string and Name Mandatory'
+        uniqueItems: true,
+        description: 'The Name must be string and Name Mandatory and Name must be unquie'
       },
       empPassword: {
         bsonType: 'string',
-        pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,16}$',
         description: 'Minimum 8 and maximum 16 characters, at least one uppercase letter, one lowercase letter, one number and one special character:'
       },
       empFirstPointOfContact: {
@@ -51,15 +52,16 @@ Validation for Employee
           'CloudArchitect',
           'Developer',
           'Tester',
-          'TechSupport'
+          'TechSupport',
+          InvalidPosition
         ],
         description: 'can only be one of the enum values'
       }
     }
   }
 }
-
 """
+
 
 class Employee:
     @unique
@@ -74,11 +76,10 @@ class Employee:
         Developer = auto()
         Tester = auto()
         TechSupport = auto()
+        InvalidPosition = auto()
 
-    
-
-    def __init__(self , empPosition :str, empName :str, empPassword :str, empFirstPointOfContact = None, 
-                    empSecondPointOfContact = None ) -> None:
+    def __init__(self, empName: str, empPassword=None, empFirstPointOfContact=None,
+                 empSecondPointOfContact=None, empPosition=Position.InvalidPosition.name) -> None:
         self.empId = 0
         self.empName = empName
         self.empPassword = empPassword
@@ -86,15 +87,26 @@ class Employee:
         self.empSecondPointOfContact = empSecondPointOfContact
         self.empPosition = self.Position[empPosition]
 
-    def createEmployee(self)->str:
+    def createEmployee(self) -> str:
         try:
             result = employee.insert_one({
-                                        "empName" : self.empName,
-                                        "empPassword" : self.empPassword,
-                                        "empFirstPointOfContact" : self.empFirstPointOfContact,
-                                        "empSecondPointOfContact" : self.empSecondPointOfContact,
-                                        "empPosition":self.empPosition.name}).inserted_id
-            
-            return "Object Inserted successfully " + str(result)
+                "empName": self.empName,
+                "empPassword": self.empPassword,
+                "empFirstPointOfContact": self.empFirstPointOfContact,
+                "empSecondPointOfContact": self.empSecondPointOfContact,
+                "empPosition": self.empPosition.name}).inserted_id
+
+            return {"MongoMessage": "Object Inserted successfully " + str(result),
+                    "CreationStaus": True}
         except Exception as e:
-            return "Database instance creationn failed \n" + str(e)
+            return {"MongoMessage": "Database instance creationn failed \n" + str(e),
+                    "CreationStaus": False}
+
+    def findOneEmployee(self) -> str:
+        try:
+            result = employee.find_one({"empName": self.empName})
+            print(result)
+            return result
+        except Exception as e:
+            print(e)
+            return None
