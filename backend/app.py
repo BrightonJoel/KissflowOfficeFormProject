@@ -27,7 +27,6 @@ def authenticate(username: str, password: str) -> bool:
 # Routes
 ############################################################################################################
 
-
 @app.route("/")
 def helloWorld():
     return "<p>Hello, World!</p> <h1 style='color: red;'> Brighton </h1>"
