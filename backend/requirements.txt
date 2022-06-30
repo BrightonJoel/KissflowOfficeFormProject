@@ -3,4 +3,3 @@ pyjwt==2.4.0
 datetime
 Flask-PyMongo==2.3.0
 flask_jwt_extended==4.4.2
-python>=3.9.0
