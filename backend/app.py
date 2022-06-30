@@ -1,7 +1,6 @@
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, jsonify, make_response, request
-from flask_pymongo import PyMongo
 from functools import wraps
 
 import datetime
